@@ -51,6 +51,17 @@ labels directory has 3 types of masks:
 As a baseline model for semantic segmentation we used Unet, standart for such purposes due to its "skip connections" mechanism that allows decoder to get detailed data from encoder.
 
 
+baseline 20 epoch unet
+
+<img width="188" height="356" alt="image" src="https://github.com/user-attachments/assets/eb7beb7d-5ca4-4232-8bf7-390e363029bd" />
+
+
+
+pipeline (weighted cross-entropy as loss function + data augmentation) 13 epoch
+
+<img width="188" height="356" alt="image" src="https://github.com/user-attachments/assets/9d2c2b46-e8f9-429f-81b8-492de2b53ab0" />
+
+
 ## Linknet experiment
 
 Also, we explored computing capabilities of lightweight model - Linknet, also segmentation model. We used 10 times reduced dataset, ran it on 10 epochs for about 10 minutes (no GPU used). Surely, due to reduced datatset there is significant probability of missing rare categories such as "human" or "sign".
@@ -74,7 +85,6 @@ Also, we explored computing capabilities of lightweight model - Linknet, also se
 Claude - data preprocessing
 Gemini - data preprocessing, also metrics evaluation discussed
 
-**What we didn't delegate:** the model-selection decision itself (§Results) — specifically, noticing that the single-split ranking disagreed with the cross-validated ranking, and choosing to trust CV — was made by reading the actual numbers, not accepted from a tool's suggestion. Any hyperparameter or architecture choice that ended up in `config/default.yaml` was verified by rerunning `python scripts/run_experiment.py` ourselves, not taken on faith.
 
 ## Contribution statement
 
