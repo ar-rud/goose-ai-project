@@ -1,38 +1,45 @@
-# 🍷 wine-origin-classifier
+# 🪿Semantic segmentation of unstructured scenes, based on GOOSE dataset
 
-Predicts which of 3 grape cultivars a wine came from, using 13 chemical measurements — a small, complete, fully-reproducible example project built from [`ucu-ai-course/project-template`](https://github.com/ucu-ai-course/project-template).
-
-![lint](https://github.com/ucu-ai-course/project-template/actions/workflows/lint.yml/badge.svg)
-![license](https://img.shields.io/badge/license-MIT-blue.svg)
-
-> [!note]
-> This repo is **both** a GitHub Template (click "Use this template" to get a clean, working starting point for your own semester project) **and** a fully filled-in example (this exact repo trains a real model and produces real numbers — nothing here is a placeholder). See §"Repository structure" for what to replace with your own project's content.
-
-## Demo
-
-`streamlit run app/streamlit_app.py` (see [`app/README.md`](app/README.md)) launches the demo below: enter 13 chemical measurements (or click "fill with a random test-set sample"), get a predicted cultivar and class probabilities.
-
-![Demo of the Streamlit app: entering wine chemistry and getting a predicted cultivar with class probabilities](results/demo/demo-wine.gif)
 
 ## Team
 
 | Name | GitHub | Role |
 |---|---|---|
-| Oleksandr Kosovan | [@OleksandrKosovan](https://github.com/OleksandrKosovan) | Data pipeline, modeling, evaluation |
-| Slavko Prytula | [@SlavkoPrytula](https://github.com/SlavkoPrytula) | CLI, Streamlit app, CI/CD |
-
-## Problem and motivation
-
-Wine composition is routinely measured in a lab (alcohol content, phenols, color intensity, and so on), but the cultivar a bottle actually comes from isn't always recorded reliably further down the supply chain. This project asks a narrow, checkable question: given only the chemistry, can a simple model recover the cultivar? It's a deliberately small, well-understood problem — the point of this repository is to demonstrate a complete, reproducible ML project structure end to end, not to push the state of the art on wine chemistry.
+| Artur Rudish | [@ar-rud](https://github.com/ar-rud) | training, metrics evaluation, prediction |
+| Denys Marchenko | [@SpyderEater](https://github.com/SpyderEater) | Data pipeline, modeling |
 
 ## Data
 
-178 samples, 13 numeric chemical features, 3 balanced-ish classes, sourced from the UCI Wine Recognition dataset via `sklearn.datasets.load_wine`. No missing values, no personal data, no licensing restrictions beyond standard academic citation. Full data card, schema, and checksum: [`data/README.md`](data/README.md).
+<img width="2339" height="693" alt="image" src="https://github.com/user-attachments/assets/0f51e4f8-41b8-4c26-b380-882e9e393b2b" />
+[GOOSE dataset](https://goose-dataset.de/) structure:
 
-> [!note] Why this matters: data isn't part of this git repo
-> `data/`, like `models/`, is gitignored. Committing raw data bloats the repo forever (`git rm` doesn't remove history — see `data/README.md`), makes diffs unreadable, and often runs into licenses that don't actually permit redistribution. Instead, `data/raw/CHECKSUMS.txt` **is** committed — a few bytes that let anyone verify they regenerated the exact same data, without the data itself ever touching git.
+```
+├── images
+|   ├── test
+|       ├── scenario01
+|       ├── scenario02
+|       ├── ...
+|       └── scenario_N
+|   ├── train
+|   └── val
+├── labels
+|   ├── train
+|   └── val
+```
 
-## Approach
+images direcory contains camera photos of different scenarios such as
+<img width="2048" height="1536" alt="image" src="https://github.com/user-attachments/assets/5f961861-b12d-4892-b2f2-ca29e08da138" />
+
+labels directory has 3 types of masks:
+- _color       -- 64-class colored segmentation mask 
+- _labelids    -- 64-class grayscale mask
+- _instanceids -- grayscale mask that saves only specific objects(not uset in our current purposes)
+
+## Baseline approach
+
+
+
+
 
 ```mermaid
 flowchart LR
