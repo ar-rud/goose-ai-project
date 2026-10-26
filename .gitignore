@@ -238,3 +238,13 @@ models/*
 
 # Env secrets
 .env
+
+*.pyc
+data/
+__pycache__/
+checkpoints/
+*.pth
+*.jpg
+venv/
+.idea/
+wandb/
